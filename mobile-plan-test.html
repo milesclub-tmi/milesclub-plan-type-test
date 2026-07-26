@@ -8,11 +8,13 @@
   <meta property="og:type" content="website">
   <meta property="og:title" content="내 요금제는 무슨 타입?">
   <meta property="og:description" content="당신은 6가지 요금제 타입 중 누구? 30초면 나옵니다.">
-  <meta property="og:image" content="./share/assets/og-default.svg">
+  <meta property="og:image" content="https://milesclub-tmi.github.io/milesclub-plan-type-test/s/og-default.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="1200">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="내 요금제는 무슨 타입?">
   <meta name="twitter:description" content="당신은 6가지 요금제 타입 중 누구? 30초 테스트.">
-  <meta name="twitter:image" content="./share/assets/og-default.svg">
+  <meta name="twitter:image" content="https://milesclub-tmi.github.io/milesclub-plan-type-test/s/og-default.png">
   <meta name="theme-color" content="#58cc02">
   <style>
     @font-face {
@@ -1518,7 +1520,7 @@
 
       if (action === "plans") {
         handlePlanClick();
-      }
+      }ㅇ
 
       if (action === "about") {
         handleAboutClick();
@@ -1767,22 +1769,16 @@
             </div>
           </div>
           <div class="screen stack">
-            <p class="eyebrow">마일스클럽 · 요금제 타입 테스트</p>
-            <h1 class="title" id="landing-title">내 요금제는 무슨 타입?</h1>
+            <p class="eyebrow">마일스클럽 성향진단 테스트</p>
+            <h1 class="title" id="landing-title">나의 통신비 성향은?</h1>
             <p class="subtitle">
               나도 모르게 통신비가 새고 있진 않을까?<br>
-              질문 8개면 나오는 나의 <b>요금제 타입</b>.<br><br>
-              아끼는 타입, 방치하는 타입,<br>
-              데이터 야수까지… 당신은 6가지 중 누구?
+              질문 8개로 진단해보는 <b>요금제 타입</b>.<br><br>
+              나는 데이터 야수일까, 알뜰폰 빠꼼일까?
             </p>
-            <div class="micro-row" aria-label="테스트 특징">
-              <span class="pill">8문항</span>
-              <span class="pill">6가지 타입</span>
-              <span class="pill">궁합 · 결과 카드 공유</span>
-            </div>
             ${renderSocialProof()}
-            <button class="primary-btn" type="button" data-action="start">내 타입 30초 만에 보기</button>
-            <p class="notice">개인정보 없이 응답만으로 확인해요. 결과는 추천 방향이며 실제 사용량과 다를 수 있어요.</p>
+            <button class="primary-btn" type="button" data-action="start">내 성향 진단하기</button>
+            <p class="notice">개인정보 입력없이 응답만으로 확인해요. 결과는 추천 방향이며 실제 사용량과 다를 수 있어요.</p>
           </div>
         </section>
       `;
@@ -2024,7 +2020,7 @@
 
     async function shareResult() {
       const result = results[state.result];
-      const shareUrl = getShareUrl();
+      const shareUrl = getResultShareUrl();
       const text = `${result.shareText}\n\n너는 무슨 타입인지 해봐: ${shareUrl}`;
       trackEvent("result_shared", buildInteractionPayload({ channel: "native_or_clipboard" }));
 
@@ -2053,7 +2049,7 @@
       // 친구 초대는 결과가 없는 시작 링크를, 그 외에는 내 결과 링크를 복사합니다.
       const url = channel === "friend_invite"
         ? getInviteUrl()
-        : (state.result ? getShareUrl() : getBaseUrl());
+        : (state.result ? getResultShareUrl() : getBaseUrl());
       try {
         await copyText(url);
         trackEvent("result_shared", buildInteractionPayload({ channel }));
@@ -2131,6 +2127,15 @@
       if (state.result) {
         url.searchParams.set("result", state.result);
       }
+      url.searchParams.set("utm_source", "share");
+      url.searchParams.set("utm_campaign", "plan_type_test");
+      return url.toString();
+    }
+
+    // 결과 공유는 유형별 공유 페이지(s/CODE.html)로 — 카톡/SNS 미리보기에 유형별 OG 카드가 뜨도록.
+    function getResultShareUrl() {
+      if (!state.result) return getShareUrl();
+      const url = new URL(`s/${state.result}.html`, getBaseUrl());
       url.searchParams.set("utm_source", "share");
       url.searchParams.set("utm_campaign", "plan_type_test");
       return url.toString();

@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 1200" font-family="Pretendard, 'Apple SD Gothic Neo', sans-serif">
+ <defs><linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#eaffd4"/><stop offset="1" stop-color="#7fd42a"/></linearGradient></defs>
+ <rect width="1200" height="1200" fill="url(#bg)"/>
+ <rect x="48" y="48" width="1104" height="1104" rx="60" fill="#ffffff"/>
+ <text x="600" y="128" text-anchor="middle" font-size="30" font-weight="700" fill="#3f8f00">마일스클럽 · 요금제 타입 테스트</text>
+ <text x="600" y="182" text-anchor="middle" font-size="34" font-weight="800" fill="#26382b">참여자 22%가 이 타입</text>
+ <rect x="380" y="224" width="440" height="430" rx="52" fill="#f2ffe4" stroke="#dbeecb" stroke-width="3"/>
+ <g transform="translate(400,240) scale(1.667)"><!-- cobweb corner -->
+  <g fill="none" stroke="#b9c9ac" stroke-width="2.5" stroke-linecap="round">
+    <path d="M40 40 L70 70"/>
+    <path d="M40 58 Q55 55 58 40"/>
+    <path d="M40 50 Q60 60 66 40"/>
+  </g>
+  <!-- sparkles -->
+  <g fill="#ffd23f">
+    <path d="M170 70 l3 7 7 3 -7 3 -3 7 -3 -7 -7 -3 7 -3 z"/>
+    <path d="M186 104 l2 5 5 2 -5 2 -2 5 -2 -5 -5 -2 5 -2 z"/>
+  </g>
+  <!-- shadow -->
+  <ellipse cx="120" cy="216" rx="54" ry="10" fill="#26382b" opacity="0.08"/>
+  <!-- body -->
+  <ellipse cx="120" cy="134" rx="56" ry="60" fill="#7ed42a" stroke="#26382b" stroke-width="6"/>
+  <ellipse cx="120" cy="148" rx="38" ry="40" fill="#a6ee5c"/>
+  <!-- cheeks -->
+  <ellipse cx="90" cy="138" rx="8" ry="5.5" fill="#ffb3a7"/>
+  <ellipse cx="150" cy="138" rx="8" ry="5.5" fill="#ffb3a7"/>
+  <!-- proud closed eyes -->
+  <g fill="none" stroke="#26382b" stroke-width="5" stroke-linecap="round">
+    <path d="M92 128 Q99 121 106 128"/>
+    <path d="M134 128 Q141 121 148 128"/>
+  </g>
+  <!-- content smile -->
+  <path d="M111 146 Q120 154 129 146" fill="none" stroke="#26382b" stroke-width="5" stroke-linecap="round"/>
+  <!-- hugging arms -->
+  <path d="M84 158 Q92 190 116 196" fill="none" stroke="#26382b" stroke-width="6" stroke-linecap="round"/>
+  <path d="M156 158 Q148 190 124 196" fill="none" stroke="#26382b" stroke-width="6" stroke-linecap="round"/>
+  <!-- retro brick phone -->
+  <line x1="128" y1="160" x2="138" y2="138" stroke="#26382b" stroke-width="5" stroke-linecap="round"/>
+  <circle cx="139" cy="135" r="4" fill="#ffd23f" stroke="#26382b" stroke-width="3"/>
+  <rect x="100" y="162" width="40" height="46" rx="7" fill="#95a889" stroke="#26382b" stroke-width="5"/>
+  <rect x="106" y="168" width="28" height="13" rx="3" fill="#cfe0c2" stroke="#26382b" stroke-width="2.5"/>
+  <g fill="#26382b">
+    <circle cx="111" cy="190" r="2.2"/><circle cx="120" cy="190" r="2.2"/><circle cx="129" cy="190" r="2.2"/>
+    <circle cx="111" cy="199" r="2.2"/><circle cx="120" cy="199" r="2.2"/><circle cx="129" cy="199" r="2.2"/>
+  </g></g>
+ <text x="600" y="742" text-anchor="middle" font-size="84" font-weight="800" fill="#243024">화석 요금제</text>
+ <text x="600" y="828" text-anchor="middle" font-size="84" font-weight="800" fill="#243024">지킴이</text>
+ <rect x="140" y="866" width="920" height="94" rx="34" fill="#f2ffe4"/>
+ <text x="600" y="928" text-anchor="middle" font-size="34" font-weight="700" fill="#3f8f00">요금제도 유물처럼 보존 중</text>
+ <text x="600" y="1086" text-anchor="middle" font-size="30" font-weight="700" fill="#5b6b52">내 요금제는 무슨 타입? · 30초 테스트</text>
+</svg>
