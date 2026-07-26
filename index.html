@@ -1946,8 +1946,10 @@
               <button class="primary-btn" type="button" data-action="detail" aria-expanded="${open}" aria-controls="result-detail">
                 ${open ? "간단히 보기" : "결과 자세히 보기"}
               </button>
-              <button class="secondary-btn" type="button" data-action="share">친구에게 공유하기</button>
-              <button class="text-btn" type="button" data-action="restart">다시 테스트하기</button>
+              <div class="summary-share">
+                <button class="secondary-btn" type="button" data-action="share">친구에게 공유하기</button>
+                <button class="ghost-btn" type="button" data-action="restart">다시 테스트하기</button>
+              </div>
             </div>
           </div>
           ${open ? renderResultDetail(result, scores) : ""}
