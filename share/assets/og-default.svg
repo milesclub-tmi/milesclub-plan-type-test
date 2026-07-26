@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <defs><style>@font-face{font-family:NationalPension;src:url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2310@1.0/NPSfontRegular.woff2") format("woff2");font-weight:400;font-display:swap}@font-face{font-family:NationalPension;src:url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2310@1.0/NPSfontBold.woff2") format("woff2");font-weight:700;font-display:swap}@font-face{font-family:NationalPension;src:url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2310@1.0/NPSfontExtraBold.woff2") format("woff2");font-weight:800;font-display:swap}</style></defs>
+  <rect width="1200" height="630" fill="#f4f6f2"/>
+  <rect x="70" y="64" width="1060" height="502" rx="8" fill="#111827"/>
+  <rect x="70" y="64" width="1060" height="24" fill="#c6ff3d"/>
+  <circle cx="1000" cy="168" r="64" fill="#2563eb"/>
+  <rect x="132" y="422" width="144" height="144" rx="8" fill="#ff8a3d"/>
+  <text x="132" y="172" fill="#c6ff3d" font-family="NationalPension, system-ui, sans-serif" font-size="34" font-weight="800">MILESCLUB PLAN TEST</text>
+  <text x="132" y="294" fill="#ffffff" font-family="NationalPension, system-ui, sans-serif" font-size="78" font-weight="800">내 요금제 본캐 테스트</text>
+  <text x="132" y="384" fill="#d7dee9" font-family="NationalPension, system-ui, sans-serif" font-size="36" font-weight="700">8개의 일상 질문으로 통신 성향을 확인해보세요</text>
+  <text x="132" y="500" fill="#ffffff" font-family="NationalPension, system-ui, sans-serif" font-size="34" font-weight="800">MilesClub</text>
+</svg>

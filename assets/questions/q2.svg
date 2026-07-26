@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 312 120" role="img" aria-label="월말 데이터 알림">
+  <defs><linearGradient id="q2bg" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0" stop-color="#f3ffe6"/><stop offset="1" stop-color="#e2f7cb"/>
+  </linearGradient></defs>
+  <rect width="312" height="120" fill="url(#q2bg)"/>
+  <!-- notification bell -->
+  <g transform="translate(214 32)">
+    <path d="M0 26 Q0 4 18 4 Q36 4 36 26 L40 34 L-4 34 Z" fill="#ffd23f" stroke="#26382b" stroke-width="5" stroke-linejoin="round"/>
+    <circle cx="18" cy="42" r="6" fill="#ffd23f" stroke="#26382b" stroke-width="5"/>
+    <circle cx="34" cy="2" r="9" fill="#e8604c" stroke="#26382b" stroke-width="4"/>
+    <text x="34" y="7" text-anchor="middle" font-family="Verdana, sans-serif" font-size="12" font-weight="700" fill="#fff">!</text>
+  </g>
+  <!-- phone with near-empty data gauge -->
+  <rect x="96" y="26" width="58" height="86" rx="13" fill="#33413a" stroke="#26382b" stroke-width="6"/>
+  <rect x="105" y="37" width="40" height="64" rx="6" fill="#eaf7ff"/>
+  <!-- gauge -->
+  <rect x="112" y="80" width="26" height="10" rx="5" fill="#f0d7cf" stroke="#26382b" stroke-width="2.5"/>
+  <rect x="112" y="80" width="7" height="10" rx="5" fill="#e8604c"/>
+  <!-- low arc -->
+  <path d="M113 68 A12 12 0 0 1 137 68" fill="none" stroke="#e8604c" stroke-width="5" stroke-linecap="round"/>
+  <circle cx="125" cy="58" r="3" fill="#e8604c"/>
+</svg>

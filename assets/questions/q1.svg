@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 312 120" role="img" aria-label="지하철에서의 데이터 습관">
+  <defs><linearGradient id="q1bg" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0" stop-color="#f3ffe6"/><stop offset="1" stop-color="#e2f7cb"/>
+  </linearGradient></defs>
+  <rect width="312" height="120" fill="url(#q1bg)"/>
+  <!-- subway hand straps -->
+  <g stroke="#8fce4f" stroke-width="4" fill="none" stroke-linecap="round">
+    <path d="M60 0 V22"/><path d="M252 0 V16"/>
+  </g>
+  <circle cx="60" cy="30" r="9" fill="none" stroke="#8fce4f" stroke-width="4"/>
+  <circle cx="252" cy="24" r="8" fill="none" stroke="#8fce4f" stroke-width="4"/>
+  <!-- data particles -->
+  <g fill="#7ed42a">
+    <circle cx="196" cy="46" r="5"/><circle cx="216" cy="58" r="4" opacity="0.8"/><circle cx="234" cy="50" r="3" opacity="0.6"/>
+    <circle cx="112" cy="52" r="4" opacity="0.7"/><circle cx="94" cy="62" r="3" opacity="0.5"/>
+  </g>
+  <!-- phone -->
+  <rect x="130" y="30" width="52" height="80" rx="12" fill="#33413a" stroke="#26382b" stroke-width="6"/>
+  <rect x="138" y="40" width="36" height="56" rx="5" fill="#eaf7ff"/>
+  <!-- signal bars on screen -->
+  <g fill="#58cc02">
+    <rect x="144" y="72" width="7" height="12" rx="2"/>
+    <rect x="153" y="64" width="7" height="20" rx="2"/>
+    <rect x="162" y="56" width="7" height="28" rx="2"/>
+  </g>
+  <circle cx="156" cy="103" r="3" fill="#eaf7ff"/>
+</svg>

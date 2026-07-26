@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 312 120" role="img" aria-label="같은 가격이면 더 끌리는 덤">
+  <defs><linearGradient id="q6bg" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0" stop-color="#f3ffe6"/><stop offset="1" stop-color="#e2f7cb"/>
+  </linearGradient></defs>
+  <rect width="312" height="120" fill="url(#q6bg)"/>
+  <!-- flying rewards -->
+  <circle cx="96" cy="34" r="12" fill="#ffd23f" stroke="#26382b" stroke-width="4"/>
+  <path d="M96 27 v14 M91 32 h10" stroke="#26382b" stroke-width="2.5" stroke-linecap="round"/>
+  <g transform="rotate(-14 214 34)">
+    <rect x="196" y="24" width="40" height="22" rx="5" fill="#fff" stroke="#26382b" stroke-width="4" stroke-dasharray="2 4"/>
+    <circle cx="216" cy="35" r="4" fill="#e8604c"/>
+  </g>
+  <path d="M164 24 c-4 -7 -15 -5 -15 3 c0 7 9 12 15 17 c6 -5 15 -10 15 -17 c0 -8 -11 -10 -15 -3 z" fill="#ff8f7a" stroke="#26382b" stroke-width="4" stroke-linejoin="round"/>
+  <!-- open gift box -->
+  <g transform="translate(126 52)">
+    <rect x="0" y="14" width="60" height="46" rx="6" fill="#a6ee5c" stroke="#26382b" stroke-width="6"/>
+    <rect x="-6" y="2" width="72" height="18" rx="5" fill="#dcffbf" stroke="#26382b" stroke-width="6"/>
+    <path d="M30 2 V60" stroke="#26382b" stroke-width="5"/>
+    <path d="M30 2 Q16 -14 8 2 M30 2 Q44 -14 52 2" fill="none" stroke="#26382b" stroke-width="5"/>
+  </g>
+  <!-- sparkle -->
+  <path d="M244 74 l2 5 5 2 -5 2 -2 5 -2 -5 -5 -2 5 -2 z" fill="#ffd23f"/>
+</svg>
