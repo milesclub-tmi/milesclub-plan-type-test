@@ -874,6 +874,90 @@
       color: inherit;
     }
 
+    .swiper-hint {
+      margin: 0;
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+    .type-swiper {
+      display: flex;
+      gap: 12px;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      padding: 2px 4px 10px;
+      margin: 0 -4px;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: thin;
+    }
+
+    .type-swiper::-webkit-scrollbar { height: 6px; }
+    .type-swiper::-webkit-scrollbar-thumb { background: #cfe8bd; border-radius: 999px; }
+
+    .type-card {
+      position: relative;
+      scroll-snap-align: start;
+      flex: 0 0 auto;
+      width: 150px;
+      display: grid;
+      gap: 7px;
+      align-content: start;
+      padding: 13px;
+      border: 2px solid var(--line);
+      border-radius: 20px;
+      background: #ffffff;
+      box-shadow: 0 4px 0 #eef4e6;
+    }
+
+    .type-card.is-current {
+      border-color: var(--lime);
+      background: #f4ffe9;
+    }
+
+    .tc-thumb {
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      display: grid;
+      place-items: center;
+      overflow: hidden;
+      border-radius: 14px;
+      background:
+        linear-gradient(135deg, rgba(88, 204, 2, 0.12), transparent 55%),
+        #fbfff6;
+      border: 1px solid #e6f3d8;
+    }
+
+    .tc-thumb img { width: 80%; height: 80%; object-fit: contain; }
+    .tc-thumb img.is-missing { display: none; }
+
+    .tc-code {
+      width: max-content;
+      padding: 2px 9px;
+      border-radius: 999px;
+      background: #eef8e3;
+      color: var(--lime-dark);
+      font-size: 11px;
+      font-weight: 800;
+    }
+
+    .type-card.is-current .tc-code { background: var(--lime); color: #ffffff; }
+
+    .tc-name { font-size: 14px; font-weight: 800; color: var(--ink); line-height: 1.3; }
+    .tc-meme { font-size: 12px; color: var(--muted); font-weight: 600; line-height: 1.45; }
+
+    .tc-mine {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      padding: 3px 8px;
+      border-radius: 999px;
+      background: #26382b;
+      color: #eaffd4;
+      font-size: 10px;
+      font-weight: 800;
+    }
+
     .social-proof {
       display: inline-flex;
       align-items: center;
@@ -1765,7 +1849,6 @@
                 decoding="async"
                 onerror="this.classList.add('is-missing'); this.removeAttribute('src');"
               >
-              <div class="hero-badge">30초</div>
             </div>
           </div>
           <div class="screen stack">
@@ -1854,20 +1937,16 @@
         <section class="${getPanelClass("result")}" aria-labelledby="result-title">
           <div class="result-summary">
             ${renderResultCharacter(result.code)}
-            <div class="summary-badges">
-              <span class="result-code">타입 ${result.shortCode}</span>
-              ${result.rarity ? `<span class="rarity-badge">${rarityLabel(result.rarity)}</span>` : ""}
-            </div>
             <h1 class="result-title" id="result-title">${result.title}</h1>
             <p class="meme-copy">${result.meme}</p>
+             <div class="summary-badges">
+              ${result.rarity ? `<span class="rarity-badge">${rarityLabel(result.rarity)}</span>` : ""}
+            </div>
             <div class="summary-actions">
               <button class="primary-btn" type="button" data-action="detail" aria-expanded="${open}" aria-controls="result-detail">
                 ${open ? "간단히 보기" : "결과 자세히 보기"}
               </button>
-              <div class="summary-share">
-                <button class="secondary-btn" type="button" data-action="share">공유하기</button>
-                <button class="ghost-btn" type="button" data-action="friend-share">친구 소환</button>
-              </div>
+              <button class="secondary-btn" type="button" data-action="share">친구에게 공유하기</button>
               <button class="text-btn" type="button" data-action="restart">다시 테스트하기</button>
             </div>
           </div>
@@ -1880,13 +1959,6 @@
       return `
         <div class="result-detail result-body" id="result-detail">
           <p class="description">${result.description}</p>
-
-          ${result.savingHook ? `
-          <div class="saving-hook">
-            <span class="saving-label">이 타입이 놓치기 쉬운 것</span>
-            <span class="saving-value">${result.savingHook}</span>
-          </div>
-          ` : ""}
 
           ${result.sniper?.length ? `
           <section class="section" aria-labelledby="sniper-title">
@@ -1920,18 +1992,6 @@
             <button class="primary-btn" type="button" data-action="plans">내게 맞는 요금제 보기</button>
           </section>
 
-          <section class="section" aria-labelledby="recommend-title">
-            <h2 id="recommend-title">이 타입에 잘 맞는 요금제</h2>
-            <ul class="recommend-list">
-              ${result.recommendations.map(([title, text]) => `
-                <li>
-                  <strong>${title}</strong>
-                  ${text}
-                </li>
-              `).join("")}
-            </ul>
-          </section>
-
           ${result.match || result.clash ? `
           <section class="section" aria-labelledby="match-title">
             <h2 id="match-title">이 타입의 궁합</h2>
@@ -1954,27 +2014,26 @@
           </section>
           ` : ""}
 
-          <section class="section" aria-labelledby="feature-title">
-            <h2 id="feature-title">이 타입을 도와줄 마일스클럽 기능</h2>
-            <ul class="feature-list">
-              ${result.features.map(([name, benefit]) => `<li><strong>${name}</strong>${benefit}</li>`).join("")}
-            </ul>
-          </section>
-
           <section class="section" aria-labelledby="gallery-title">
-            <h2 id="gallery-title">6가지 타입, 당신은 여기</h2>
-            <ul class="type-gallery">
+            <h2 id="gallery-title">다른 타입은 뭐가 있을까?</h2>
+            <p class="swiper-hint">옆으로 밀어서 6가지 타입을 구경해보세요</p>
+            <div class="type-swiper">
               ${Object.keys(results).map((code) => `
-                <li class="${code === result.code ? "is-current" : ""}">
-                  <span class="gallery-code">${results[code].shortCode}</span>
-                  <span><span class="gallery-name">${results[code].title}</span> · ${results[code].meme}</span>
-                </li>
+                <div class="type-card ${code === result.code ? "is-current" : ""}">
+                  ${code === result.code ? `<span class="tc-mine">내 타입</span>` : ""}
+                  <div class="tc-thumb">
+                    <img src="${RESULT_IMAGE_SLOTS[code]}" alt="" loading="lazy" decoding="async"
+                      onerror="this.classList.add('is-missing'); this.removeAttribute('src');">
+                  </div>
+                  <span class="tc-code">${results[code].shortCode}</span>
+                  <span class="tc-name">${results[code].title}</span>
+                  <span class="tc-meme">${results[code].meme}</span>
+                </div>
               `).join("")}
-            </ul>
+            </div>
           </section>
 
           <div class="compact-actions">
-            <button class="secondary-btn" type="button" data-action="friend-share">친구는 무슨 타입? 궁합 보러 소환하기</button>
             <button class="ghost-btn" type="button" data-action="save-image">이미지 저장</button>
             <button class="ghost-btn" type="button" data-action="restart">다시 테스트하기</button>
           </div>
