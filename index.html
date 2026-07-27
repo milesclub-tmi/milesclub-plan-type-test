@@ -2051,24 +2051,10 @@
 
       render();
 
+      // 공유 링크로 들어와도 항상 랜딩에서 시작합니다. 예전에는 ?result=CODE를 읽어
+      // 친구의 결과 화면을 바로 띄웠는데, 그 상태에서 '다시 테스트하기'를 누르면
+      // 이 함수가 URL의 result를 다시 읽어 같은 결과를 만들어 내 버튼이 먹지 않았습니다.
       function createInitialState() {
-        const sharedResult = getSharedResultCode();
-        if (sharedResult) {
-          return {
-            view: "result",
-            runId: createRunId(),
-            currentStep: 0,
-            answers: [],
-            scores: createEmptyScores(),
-            signals: {},
-            result: sharedResult,
-            resultScores: {},
-            isSharedResult: true,
-            detailOpen: false,
-            motionClass: "",
-          };
-        }
-
         return {
           view: "landing",
           runId: createRunId(),
@@ -2078,7 +2064,6 @@
           signals: {},
           result: null,
           resultScores: {},
-          isSharedResult: false,
           detailOpen: false,
           motionClass: "",
         };
@@ -2093,12 +2078,6 @@
 
       function createEmptySignals() {
         return {};
-      }
-
-      function getSharedResultCode() {
-        const params = new URLSearchParams(window.location.search);
-        const result = params.get("result");
-        return result && results[result] ? result : null;
       }
 
       function chooseAnswer(answerIndex) {
@@ -2250,10 +2229,7 @@
           app.innerHTML = renderWithBrand(renderResult());
           if (!resultViewedTracked) {
             resultViewedTracked = true;
-            trackEvent(
-              "result_viewed",
-              buildInteractionPayload({ sharedResult: state.isSharedResult }),
-            );
+            trackEvent("result_viewed", buildInteractionPayload());
           }
         }
 
@@ -2635,15 +2611,13 @@
 
       function getShareUrl() {
         const url = new URL(getBaseUrl());
-        if (state.result) {
-          url.searchParams.set("result", state.result);
-        }
         url.searchParams.set("utm_source", "share");
         url.searchParams.set("utm_campaign", "plan_type_test");
         return url.toString();
       }
 
-      // 결과 공유는 유형별 공유 페이지(s/CODE.html)로 — 카톡/SNS 미리보기에 유형별 OG 카드가 뜨도록.
+      // 결과 공유는 유형별 공유 페이지(s/CODE.html)로 — 카톡/SNS 미리보기에 유형별
+      // OG 카드가 뜨도록. 링크를 연 사람은 그 페이지에서 랜딩으로 넘어가 직접 테스트합니다.
       function getResultShareUrl() {
         if (!state.result) return getShareUrl();
         const url = new URL(`s/${state.result}.html`, getBaseUrl());
