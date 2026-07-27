@@ -1,8 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
-  <defs><style>@font-face{font-family:NationalPension;src:url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2310@1.0/NPSfontRegular.woff2") format("woff2");font-weight:400;font-display:swap}@font-face{font-family:NationalPension;src:url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2310@1.0/NPSfontBold.woff2") format("woff2");font-weight:700;font-display:swap}@font-face{font-family:NationalPension;src:url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2310@1.0/NPSfontExtraBold.woff2") format("woff2");font-weight:800;font-display:swap}</style></defs>
-  <rect width="1200" height="630" fill="#f4f6f2"/><rect x="70" y="64" width="1060" height="502" rx="8" fill="#111827"/><rect x="70" y="64" width="1060" height="24" fill="#c6ff3d"/><circle cx="1000" cy="168" r="64" fill="#2563eb"/>
-  <text x="132" y="172" fill="#c6ff3d" font-family="NationalPension, system-ui, sans-serif" font-size="34" font-weight="800">RESULT T</text>
-  <text x="132" y="294" fill="#ffffff" font-family="NationalPension, system-ui, sans-serif" font-size="86" font-weight="800">이통3사 성골형</text>
-  <text x="132" y="384" fill="#d7dee9" font-family="NationalPension, system-ui, sans-serif" font-size="36" font-weight="700">비싸도 익숙하고 편한 게 이기는 사람.</text>
-  <text x="132" y="500" fill="#ffffff" font-family="NationalPension, system-ui, sans-serif" font-size="34" font-weight="800">내 요금제 본캐 테스트 · MilesClub</text>
-</svg>
