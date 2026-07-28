@@ -393,7 +393,7 @@
       .question-layout {
         min-height: 640px;
         display: grid;
-        gap: 18px;
+        gap: 16px;
         align-content: start;
         /* 진행바 sticky가 카드에 갇히지 않도록 세로는 visible.
          가로는 card-enter(translateX)가 삐져나오지 않게 clip — hidden과 달리
@@ -470,7 +470,7 @@
         display: grid;
         place-items: center;
         overflow: hidden;
-        border: 2px solid #e5e8eb;
+        border: 1px solid #e5e8eb;
         border-radius: var(--radius);
         background:
           linear-gradient(135deg, rgba(49, 130, 246, 0.16), transparent 45%),
@@ -526,7 +526,7 @@
 
       .choice-list {
         display: grid;
-        gap: 10px;
+        gap: 5px;
       }
 
       .choice-btn {
@@ -1359,14 +1359,8 @@
           height: 240px;
         }
 
-        .result-character,
-        .result-image {
-          min-height: 146px;
-          height: 146px;
-        }
-
         .result-title {
-          font-size: 31px;
+          font-size: 30px;
         }
 
         .choice-btn {
@@ -1407,14 +1401,14 @@
       };
       const LANDING_IMAGE_SLOT = "./assets/start/start.jpg";
       const QUESTION_IMAGE_SLOTS = {
-        buffet: "./assets/questions/buffet.png",
-        luggage: "./assets/questions/luggage.png",
-        cafe: "./assets/questions/cafe.png",
-        binge: "./assets/questions/binge.png",
-        promo: "./assets/questions/promo.png",
-        cart: "./assets/questions/cart.png",
-        gym: "./assets/questions/gym.png",
-        friendtip: "./assets/questions/friendtip.png",
+        buffet: "./assets/questions/buffet.jpg",
+        luggage: "./assets/questions/luggage.jpg",
+        cafe: "./assets/questions/cafe.jpg",
+        binge: "./assets/questions/binge.jpg",
+        promo: "./assets/questions/promo.jpg",
+        cart: "./assets/questions/cart.jpg",
+        gym: "./assets/questions/gym.jpg",
+        friendtip: "./assets/questions/friendtip.jpg",
       };
       const RESULT_IMAGE_SLOTS = {
         WIFI_MINIMALIST: "./assets/results/wifi-minimalist.png",
@@ -1713,7 +1707,7 @@
         answers: [
           {
             key: "A",
-            text: "맛보기로 조금씩만. 어차피 많이는 못 먹는다",
+            text: "맛보기로 조금씩만. 어차피 많이 못 먹는다",
             score: {
               dataNeed: 0,
               priceSensitivity: 2,
@@ -1749,7 +1743,7 @@
           },
           {
             key: "D",
-            text: "접시가 안 보일 때까지. 본전은 뽑아야 한다",
+            text: "접시에 빈틈없도록. 본전은 뽑아야 한다",
             score: {
               dataNeed: 3,
               priceSensitivity: 0,
@@ -2067,7 +2061,7 @@
           },
           {
             key: "C",
-            text: "안 가는데, 해지하러 가는 것도 일이라 그냥 둔다",
+            text: "안 가는데, 해지하러 가기도 귀찮다",
             score: {
               dataNeed: 0,
               priceSensitivity: 0,
@@ -2079,7 +2073,7 @@
           },
           {
             key: "D",
-            text: "아직도 돈이 나가고 있는지조차 몰랐다",
+            text: "헬스장 등록한거 까먹고 있었다",
             score: {
               dataNeed: 0,
               priceSensitivity: 0,
@@ -2098,7 +2092,7 @@
         answers: [
           {
             key: "A",
-            text: "어디로 바꿨는지 바로 캐묻는다",
+            text: "뭘로 바꿨는지 바로 캐묻는다",
             score: {
               dataNeed: 0,
               priceSensitivity: 2,
@@ -2110,7 +2104,7 @@
           },
           {
             key: "B",
-            text: "나도 알아봐야지, 생각만 한다",
+            text: "나도 알아봐야지, 생각만 한다.. 생각만",
             score: {
               dataNeed: 0,
               priceSensitivity: 1,
@@ -2122,7 +2116,7 @@
           },
           {
             key: "C",
-            text: "내가 지금 얼마 내는지부터 헷갈린다",
+            text: "내가 지금 얼마 내는지부터 모른다",
             score: {
               dataNeed: 0,
               priceSensitivity: 0,
@@ -2134,7 +2128,7 @@
           },
           {
             key: "D",
-            text: "이미 나는 더 싼 데 쓰고 있다",
+            text: "훗, 이미 나는 더 싼 데 쓰고 있다",
             score: {
               dataNeed: 0,
               priceSensitivity: 2,
@@ -2660,17 +2654,15 @@
       function renderLanding() {
         return `
         <section class="${getPanelClass("landing")}" aria-labelledby="landing-title">
-          <div class="landing-art" aria-hidden="true">
-            <div class="landing-image-frame" data-image-slot="start">
-              <img
-                class="landing-image"
-                src="${LANDING_IMAGE_SLOT}"
-                alt=""
-                loading="eager"
-                decoding="async"
-                onerror="this.classList.add('is-missing'); this.removeAttribute('src');"
-              >
-            </div>
+          <div class="landing-art" aria-hidden="true" data-image-slot="start">
+            <img
+              class="landing-image"
+              src="${LANDING_IMAGE_SLOT}"
+              alt=""
+              loading="eager"
+              decoding="async"
+              onerror="this.classList.add('is-missing'); this.removeAttribute('src');"
+            >
           </div>
           <div class="screen stack">
             <p class="eyebrow">마일스클럽 요금제 성향진단 테스트</p>
