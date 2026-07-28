@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 312 120" role="img" aria-label="뷔페 접시">
+  <defs><linearGradient id="buffetbg" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0" stop-color="#f3ffe6"/><stop offset="1" stop-color="#e2f7cb"/>
+  </linearGradient></defs>
+  <rect width="312" height="120" fill="url(#buffetbg)"/>
+  <!-- 클로슈 -->
+  <g transform="translate(38 34)">
+    <path d="M4 46 A38 34 0 0 1 80 46 Z" fill="#dcffbf" stroke="#26382b" stroke-width="6" stroke-linejoin="round"/>
+    <circle cx="42" cy="8" r="6" fill="#ffd23f" stroke="#26382b" stroke-width="5"/>
+    <rect x="-6" y="44" width="96" height="10" rx="5" fill="#ffffff" stroke="#26382b" stroke-width="5"/>
+  </g>
+  <!-- 산처럼 쌓은 접시 -->
+  <g transform="translate(150 22)">
+    <path d="M20 52 Q56 -4 92 52 Z" fill="#7ed42a" stroke="#26382b" stroke-width="6" stroke-linejoin="round"/>
+    <circle cx="56" cy="18" r="8" fill="#e8604c" stroke="#26382b" stroke-width="5"/>
+    <circle cx="36" cy="40" r="7" fill="#ffd23f" stroke="#26382b" stroke-width="5"/>
+    <circle cx="76" cy="40" r="7" fill="#5aa9e8" stroke="#26382b" stroke-width="5"/>
+    <ellipse cx="56" cy="58" rx="56" ry="13" fill="#ffffff" stroke="#26382b" stroke-width="6"/>
+    <ellipse cx="56" cy="56" rx="34" ry="6" fill="#dcffbf"/>
+  </g>
+  <!-- 포크 -->
+  <g transform="translate(276 32)" stroke="#26382b" stroke-width="5" stroke-linecap="round" fill="none">
+    <path d="M0 4 V22 a10 10 0 0 0 20 0 V4"/>
+    <path d="M10 32 V60"/>
+    <path d="M10 4 V22"/>
+  </g>
+</svg>

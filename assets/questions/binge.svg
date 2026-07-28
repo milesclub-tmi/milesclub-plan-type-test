@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 312 120" role="img" aria-label="드라마 정주행">
+  <defs><linearGradient id="bingebg" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0" stop-color="#f3ffe6"/><stop offset="1" stop-color="#e2f7cb"/>
+  </linearGradient></defs>
+  <rect width="312" height="120" fill="url(#bingebg)"/>
+  <!-- 달 -->
+  <path d="M44 26 a20 20 0 1 0 18 30 a16 16 0 0 1 -18 -30 z" fill="#ffd23f" stroke="#26382b" stroke-width="5" stroke-linejoin="round"/>
+  <g fill="#58cc02"><circle cx="36" cy="72" r="4"/><circle cx="62" cy="84" r="3"/></g>
+  <!-- 화면 -->
+  <g transform="translate(104 20)">
+    <rect x="0" y="0" width="120" height="74" rx="12" fill="#26382b"/>
+    <rect x="8" y="8" width="104" height="58" rx="7" fill="#5aa9e8"/>
+    <path d="M48 24 v26 l24 -13 z" fill="#ffffff"/>
+    <rect x="44" y="80" width="32" height="6" rx="3" fill="#26382b"/>
+    <rect x="26" y="86" width="68" height="8" rx="4" fill="#26382b"/>
+  </g>
+  <!-- ZZZ -->
+  <g fill="#26382b" font-family="Verdana, sans-serif" font-weight="700">
+    <text x="248" y="44" font-size="20">Z</text>
+    <text x="268" y="28" font-size="15">z</text>
+  </g>
+</svg>

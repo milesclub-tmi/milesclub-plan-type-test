@@ -815,6 +815,76 @@
         color: #b7ff6b;
       }
 
+      /* 엉뚱한 답 → 진단 연결을 공개하는 영역. 이 테스트의 핵심 재미라 시각적으로 세게 잡는다. */
+      .reveal-list {
+        display: grid;
+        gap: 10px;
+        padding: 0;
+        margin: 0;
+        list-style: none;
+        counter-reset: reveal;
+      }
+
+      .reveal-list li {
+        position: relative;
+        display: grid;
+        gap: 5px;
+        padding: 14px 16px 14px 46px;
+        border: 2px solid var(--line);
+        border-radius: 22px;
+        background: #ffffff;
+      }
+
+      .reveal-list li::before {
+        counter-increment: reveal;
+        content: counter(reveal);
+        position: absolute;
+        left: 14px;
+        top: 14px;
+        width: 22px;
+        height: 22px;
+        display: grid;
+        place-items: center;
+        border-radius: 999px;
+        background: var(--lime);
+        color: #ffffff;
+        font-size: 12px;
+        font-weight: 800;
+      }
+
+      .reveal-q {
+        color: var(--muted);
+        font-size: 13px;
+        font-weight: 700;
+      }
+
+      .reveal-a {
+        color: var(--ink);
+        font-size: 15px;
+        line-height: 1.5;
+        font-weight: 800;
+      }
+
+      .reveal-tell {
+        padding-top: 6px;
+        border-top: 1px dashed #cfe8bd;
+        color: var(--lime-dark);
+        font-size: 14px;
+        line-height: 1.5;
+        font-weight: 700;
+      }
+
+      .reveal-foot {
+        margin: 10px 0 0;
+        color: var(--muted);
+        font-size: 13px;
+        font-weight: 700;
+      }
+
+      .reveal-foot b {
+        color: var(--ink);
+      }
+
       .sniper-list {
         display: grid;
         gap: 9px;
@@ -1298,14 +1368,14 @@
       };
       const LANDING_IMAGE_SLOT = "./assets/start/start.svg";
       const QUESTION_IMAGE_SLOTS = {
-        data: "./assets/questions/q1.svg",
-        monthEnd: "./assets/questions/q2.svg",
-        priority: "./assets/questions/q3.svg",
-        switch: "./assets/questions/q4.svg",
-        usage: "./assets/questions/q5.svg",
-        reward: "./assets/questions/q6.svg",
-        awareness: "./assets/questions/q7.svg",
-        concern: "./assets/questions/q8.svg",
+        buffet: "./assets/questions/buffet.svg",
+        luggage: "./assets/questions/luggage.svg",
+        burger: "./assets/questions/burger.svg",
+        binge: "./assets/questions/binge.svg",
+        promo: "./assets/questions/promo.svg",
+        cart: "./assets/questions/cart.svg",
+        fridge: "./assets/questions/fridge.svg",
+        queue: "./assets/questions/queue.svg",
       };
       const RESULT_IMAGE_SLOTS = {
         WIFI_MINIMALIST: "./assets/results/wifi-minimalist.svg",
@@ -1326,446 +1396,478 @@
       ];
 
       const questions = [
-        {
-          id: "Q1",
-          visual: "data",
-          question: "출퇴근 지하철길, 폰으로 주로 뭐하세요?",
-          answers: [
-            {
-              key: "A",
-              text: "메신저만 확인하고 바로 잠근다. 내 데이터는 귀한 몸이다",
-              score: {
-                dataNeed: 0,
-                priceSensitivity: 2,
-                rewardSensitivity: 0,
-                switchingPropensity: 0,
-                awareness: 1,
-              },
-              signal: { lowData: 2 },
+      {
+        id: "Q1",
+        visual: "buffet",
+        question: "뷔페에 왔다. 첫 접시를 채우는 방식은?",
+        answers: [
+          {
+            key: "A",
+            text: "맛보기로 조금씩만. 어차피 많이는 못 먹는다",
+            score: {
+              dataNeed: 0,
+              priceSensitivity: 2,
+              rewardSensitivity: 0,
+              switchingPropensity: 0,
+              awareness: 1,
             },
-            {
-              key: "B",
-              text: "뉴스 조금 보다가 멈춘다. 데이터 닳을까봐 걱정된다",
-              score: {
-                dataNeed: 1,
-                priceSensitivity: 1,
-                rewardSensitivity: 0,
-                switchingPropensity: 0,
-                awareness: 1,
-              },
-              signal: { balancedData: 1 },
+            signal: { lowData: 3 },
+            tell: "적게 담고도 만족하는 사람은, 쓰는 양 자체가 원래 크지 않습니다",
+          },
+          {
+            key: "B",
+            text: "먹을 만큼만 계산해서 딱 담는다",
+            score: {
+              dataNeed: 1,
+              priceSensitivity: 1,
+              rewardSensitivity: 0,
+              switchingPropensity: 0,
+              awareness: 2,
             },
-            {
-              key: "C",
-              text: "릴스 하나 눌렀는데 정신 차리면 세 정거장 지나 있다",
-              score: {
-                dataNeed: 2,
-                priceSensitivity: 0,
-                rewardSensitivity: 0,
-                switchingPropensity: 0,
-                awareness: 1,
-              },
-              signal: { videoHeavy: 2 },
+            signal: { balancedData: 2 },
+            tell: "필요한 만큼을 가늠하는 감각이 있습니다",
+          },
+          {
+            key: "C",
+            text: "좋아하는 것만 산처럼 쌓는다",
+            score: {
+              dataNeed: 3,
+              priceSensitivity: 0,
+              rewardSensitivity: 0,
+              switchingPropensity: 0,
+              awareness: 1,
             },
-            {
-              key: "D",
-              text: "유튜브, 음악, 게임까지 풀로 돌린다. 데이터 걱정은 내 알바가 아니다.",
-              score: {
-                dataNeed: 3,
-                priceSensitivity: 0,
-                rewardSensitivity: 0,
-                switchingPropensity: 0,
-                awareness: 1,
-              },
-              signal: { unlimited: 2, stabilityConcern: 1 },
+            signal: { videoHeavy: 3 },
+            tell: "한번 꽂히면 끝까지 가는 몰입형입니다",
+          },
+          {
+            key: "D",
+            text: "접시가 안 보일 때까지. 본전은 뽑아야 한다",
+            score: {
+              dataNeed: 3,
+              priceSensitivity: 0,
+              rewardSensitivity: 1,
+              switchingPropensity: 0,
+              awareness: 1,
             },
-          ],
-        },
-        {
-          id: "Q2",
-          visual: "monthEnd",
-          question: "월말 데이터 용량 알림 문자가 왔다. 내 반응은?",
-          answers: [
-            {
-              key: "A",
-              text: "데이터가 또 남았다. 이쯤 되면 지금 요금제가 나한테 과분하다.",
-              score: {
-                dataNeed: 0,
-                priceSensitivity: 2,
-                rewardSensitivity: 0,
-                switchingPropensity: 0,
-                awareness: 2,
-              },
-              signal: { lowData: 2 },
+            signal: { unlimited: 3, reward: 1 },
+            tell: "모자란 것보다 넉넉한 쪽이 마음 편한 타입입니다",
+          },
+        ],
+      },
+      {
+        id: "Q2",
+        visual: "luggage",
+        question: "3박 4일 여행. 캐리어를 싸는 당신은?",
+        answers: [
+          {
+            key: "A",
+            text: "목록을 만들어 하나씩 체크한다",
+            score: {
+              dataNeed: 0,
+              priceSensitivity: 1,
+              rewardSensitivity: 0,
+              switchingPropensity: 1,
+              awareness: 3,
             },
-            {
-              key: "B",
-              text: "거의 딱 맞게 썼다. 이 요금제는 나랑 참 잘맞는 편이다.",
-              score: {
-                dataNeed: 1,
-                priceSensitivity: 1,
-                rewardSensitivity: 0,
-                switchingPropensity: 0,
-                awareness: 2,
-              },
-              signal: { balancedData: 1 },
+            signal: { promoHunter: 2 },
+            tell: "미리 따져보고 움직이는 계획형입니다",
+          },
+          {
+            key: "B",
+            text: "혹시 몰라 다 넣는다. 무거워도 마음이 편하다",
+            score: {
+              dataNeed: 2,
+              priceSensitivity: 0,
+              rewardSensitivity: 0,
+              switchingPropensity: 0,
+              awareness: 1,
             },
-            {
-              key: "C",
-              text: "이미 다 썼다. 이제 와이파이 없이는 못산다.",
-              score: {
-                dataNeed: 3,
-                priceSensitivity: 0,
-                rewardSensitivity: 0,
-                switchingPropensity: 0,
-                awareness: 1,
-              },
-              signal: { videoHeavy: 1, unlimited: 1 },
+            signal: { stabilityConcern: 3, unlimited: 1 },
+            tell: "'모자라면 어쩌지'가 선택 기준입니다",
+          },
+          {
+            key: "C",
+            text: "대충 넣고, 없으면 현지에서 산다",
+            score: {
+              dataNeed: 1,
+              priceSensitivity: 0,
+              rewardSensitivity: 0,
+              switchingPropensity: 2,
+              awareness: 0,
             },
-            {
-              key: "D",
-              text: "알림? 그런 게 왔나.",
-              score: {
-                dataNeed: 1,
-                priceSensitivity: 0,
-                rewardSensitivity: 0,
-                switchingPropensity: 0,
-                awareness: -1,
-              },
-              signal: { neglect: 2 },
+            signal: { neglect: 1 },
+            tell: "상황이 바뀌어도 유연하게 넘어갑니다",
+          },
+          {
+            key: "D",
+            text: "출발 한 시간 전에 몰아서 싼다",
+            score: {
+              dataNeed: 1,
+              priceSensitivity: 0,
+              rewardSensitivity: 0,
+              switchingPropensity: -1,
+              awareness: -2,
             },
-          ],
-        },
-        {
-          id: "Q3",
-          visual: "priority",
-          question: "요금제 광고가 떴다. 가장 먼저 눈에 들어오는 문구는?",
-          answers: [
-            {
-              key: "A",
-              text: "월요금 얼마인지에 꽂힌다. 싸 보이면 집중력이 갑자기 올라간다",
-              score: {
-                dataNeed: 0,
-                priceSensitivity: 3,
-                rewardSensitivity: 0,
-                switchingPropensity: 1,
-                awareness: 1,
-              },
-              signal: { promoHunter: 1 },
+            signal: { neglect: 2, friction: 1 },
+            tell: "미루다 몰아서 처리하는 편입니다",
+          },
+        ],
+      },
+      {
+        id: "Q3",
+        visual: "burger",
+        question: "햄버거집. 주문할 차례가 돌아왔다.",
+        answers: [
+          {
+            key: "A",
+            text: "쿠폰 되는 메뉴부터 확인한다",
+            score: {
+              dataNeed: 0,
+              priceSensitivity: 1,
+              rewardSensitivity: 3,
+              switchingPropensity: 1,
+              awareness: 1,
             },
-            {
-              key: "B",
-              text: "데이터 용량부터 본다. 적은 기가는 가격도 눈에 안 들어온다",
-              score: {
-                dataNeed: 3,
-                priceSensitivity: 0,
-                rewardSensitivity: 0,
-                switchingPropensity: 0,
-                awareness: 1,
-              },
-              signal: { unlimited: 1 },
+            signal: { reward: 3 },
+            tell: "같은 값이면 돌려받는 쪽을 고릅니다",
+          },
+          {
+            key: "B",
+            text: "신메뉴가 보이면 일단 먹어본다",
+            score: {
+              dataNeed: 1,
+              priceSensitivity: 0,
+              rewardSensitivity: 0,
+              switchingPropensity: 3,
+              awareness: 1,
             },
-            {
-              key: "C",
-              text: "포인트, 쿠폰, 캐시백이 보이면 갑자기 눈이 또렷해진다",
-              score: {
-                dataNeed: 0,
-                priceSensitivity: 1,
-                rewardSensitivity: 3,
-                switchingPropensity: 1,
-                awareness: 1,
-              },
-              signal: { reward: 2 },
+            signal: { promoHunter: 1 },
+            tell: "새로 나온 것에 거부감이 없습니다",
+          },
+          {
+            key: "C",
+            text: "10년째 먹던 그거",
+            score: {
+              dataNeed: 1,
+              priceSensitivity: 0,
+              rewardSensitivity: 0,
+              switchingPropensity: -1,
+              awareness: 0,
             },
-            {
-              key: "D",
-              text: "딸려있는 조건이 빼곡하면 그 순간 마음이 차갑게 식는다",
-              score: {
-                dataNeed: 1,
-                priceSensitivity: 0,
-                rewardSensitivity: 0,
-                switchingPropensity: -1,
-                awareness: 1,
-              },
-              signal: { stabilityConcern: 2 },
+            signal: { neglect: 2 },
+            tell: "익숙한 걸 바꿀 이유를 잘 못 느낍니다",
+          },
+          {
+            key: "D",
+            text: "제일 비싼 세트. 이왕 온 거니까",
+            score: {
+              dataNeed: 2,
+              priceSensitivity: 0,
+              rewardSensitivity: 0,
+              switchingPropensity: 0,
+              awareness: 1,
             },
-          ],
-        },
-        {
-          id: "Q4",
-          visual: "switch",
-          question: "친구가 “이 요금제가 더 싸대” 링크를 보냈다.",
-          answers: [
-            {
-              key: "A",
-              text: "조건 좋으면 오늘 갈아탄다. 고민만 하다 놓치는 게 더 싫다",
-              score: {
-                dataNeed: 0,
-                priceSensitivity: 2,
-                rewardSensitivity: 1,
-                switchingPropensity: 3,
-                awareness: 2,
-              },
-              signal: { promoHunter: 2 },
+            signal: { unlimited: 2 },
+            tell: "아끼는 것보다 만족이 먼저입니다",
+          },
+        ],
+      },
+      {
+        id: "Q4",
+        visual: "binge",
+        question: "드라마가 재밌다. ‘다음 화’ 버튼 앞에서.",
+        answers: [
+          {
+            key: "A",
+            text: "한 편만 보고 잔다. 내일이 있으니까",
+            score: {
+              dataNeed: 0,
+              priceSensitivity: 1,
+              rewardSensitivity: 0,
+              switchingPropensity: 0,
+              awareness: 1,
             },
-            {
-              key: "B",
-              text: "일단 저장한다. 잠들기 전에 다시한번 살펴볼 예정이다.",
-              score: {
-                dataNeed: 0,
-                priceSensitivity: 1,
-                rewardSensitivity: 1,
-                switchingPropensity: 2,
-                awareness: 2,
-              },
-              signal: { promoHunter: 1 },
+            signal: { lowData: 3 },
+            tell: "스스로 끊는 절제가 몸에 배어 있습니다",
+          },
+          {
+            key: "B",
+            text: "두세 편 보다가 적당히 끊는다",
+            score: {
+              dataNeed: 1,
+              priceSensitivity: 1,
+              rewardSensitivity: 0,
+              switchingPropensity: 0,
+              awareness: 1,
             },
-            {
-              key: "C",
-              text: "좋아 보이긴 하는데, 지금 내 요금제가 뭔지 모르겠다",
-              score: {
-                dataNeed: 0,
-                priceSensitivity: 0,
-                rewardSensitivity: 0,
-                switchingPropensity: -1,
-                awareness: -1,
-              },
-              signal: { neglect: 3 },
+            signal: { balancedData: 2 },
+            tell: "적당한 선을 알고 지킵니다",
+          },
+          {
+            key: "C",
+            text: "눈 떠보니 아침이고 정주행이 끝나 있다",
+            score: {
+              dataNeed: 3,
+              priceSensitivity: 0,
+              rewardSensitivity: 0,
+              switchingPropensity: 0,
+              awareness: 0,
             },
-            {
-              key: "D",
-              text: "바꿔볼까? 생각만 하고 링크는 어느새 까먹는다",
-              score: {
-                dataNeed: 0,
-                priceSensitivity: 1,
-                rewardSensitivity: 0,
-                switchingPropensity: -1,
-                awareness: 0,
-              },
-              signal: { neglect: 2, friction: 2 },
+            signal: { videoHeavy: 4 },
+            tell: "영상 앞에서는 시간 감각이 사라집니다",
+          },
+          {
+            key: "D",
+            text: "틀어놓고 딴짓하며 계속 켜 둔다",
+            score: {
+              dataNeed: 3,
+              priceSensitivity: 0,
+              rewardSensitivity: 0,
+              switchingPropensity: 0,
+              awareness: 0,
             },
-          ],
-        },
-        {
-          id: "Q5",
-          visual: "usage",
-          question: "배터리 10퍼 남았는데도 포기할 수 없는건?",
-          answers: [
-            {
-              key: "A",
-              text: "꼭 답장해야하는 메신저만. 집에 도착할때까지 살아있어야한다.",
-              score: {
-                dataNeed: 1,
-                priceSensitivity: 1,
-                rewardSensitivity: 0,
-                switchingPropensity: 0,
-                awareness: 1,
-              },
-              signal: { lowData: 1 },
+            signal: { videoHeavy: 2, unlimited: 2 },
+            tell: "늘 뭔가 흐르고 있어야 편한 사람입니다",
+          },
+        ],
+      },
+      {
+        id: "Q5",
+        visual: "promo",
+        question: "편의점에서 ‘2+1’ 스티커를 봤다.",
+        answers: [
+          {
+            key: "A",
+            text: "계산기부터 두드린다. 진짜 이득인지",
+            score: {
+              dataNeed: 0,
+              priceSensitivity: 3,
+              rewardSensitivity: 1,
+              switchingPropensity: 1,
+              awareness: 2,
             },
-            {
-              key: "B",
-              text: "그래도 이건 봐야해.. 밝기랑 화질을 낮춰서라도 영상은 본다.",
-              score: {
-                dataNeed: 3,
-                priceSensitivity: 0,
-                rewardSensitivity: 0,
-                switchingPropensity: 0,
-                awareness: 1,
-              },
-              signal: { videoHeavy: 3 },
+            signal: { promoHunter: 3 },
+            tell: "이득인지 아닌지를 숫자로 확인합니다",
+          },
+          {
+            key: "B",
+            text: "이득이면 안 사려던 것도 산다",
+            score: {
+              dataNeed: 0,
+              priceSensitivity: 1,
+              rewardSensitivity: 3,
+              switchingPropensity: 1,
+              awareness: 1,
             },
-            {
-              key: "C",
-              text: "전부 포기 못해. 흐름이 끊기는 순간 바로 스트레스다.",
-              score: {
-                dataNeed: 3,
-                priceSensitivity: 0,
-                rewardSensitivity: 0,
-                switchingPropensity: 0,
-                awareness: 1,
-              },
-              signal: { unlimited: 2, stabilityConcern: 1 },
+            signal: { reward: 3 },
+            tell: "혜택이 보이면 그냥 지나치지 못합니다",
+          },
+          {
+            key: "C",
+            text: "필요한 것만 산다. 행사는 상술이다",
+            score: {
+              dataNeed: 0,
+              priceSensitivity: 2,
+              rewardSensitivity: 0,
+              switchingPropensity: 0,
+              awareness: 1,
             },
-            {
-              key: "D",
-              text: "쇼핑은 못 지나친다. 배터리는 놓쳐도 세일은 놓치면 손해 본 기분이다",
-              score: {
-                dataNeed: 1,
-                priceSensitivity: 1,
-                rewardSensitivity: 3,
-                switchingPropensity: 1,
-                awareness: 1,
-              },
-              signal: { reward: 2 },
+            signal: { lowData: 2 },
+            tell: "필요 이상은 애초에 담지 않습니다",
+          },
+          {
+            key: "D",
+            text: "그런 거 잘 안 보고 지나간다",
+            score: {
+              dataNeed: 0,
+              priceSensitivity: 0,
+              rewardSensitivity: 0,
+              switchingPropensity: 0,
+              awareness: -1,
             },
-          ],
-        },
-        {
-          id: "Q6",
-          visual: "reward",
-          question: "요금제가 같은 가격이라면, 더 끌리는 덤은?",
-          answers: [
-            {
-              key: "A",
-              text: "통신사 멤버십 할인. 영화, 카페, 편의점에서 바로 써먹어야 제맛이다",
-              score: {
-                dataNeed: 0,
-                priceSensitivity: 1,
-                rewardSensitivity: 3,
-                switchingPropensity: 1,
-                awareness: 1,
-              },
-              signal: { reward: 2, carrierMembership: 2 },
+            signal: { neglect: 2 },
+            tell: "챙길 수 있는 걸 흘리고 다닙니다",
+          },
+        ],
+      },
+      {
+        id: "Q6",
+        visual: "cart",
+        question: "장바구니에 담아둔 물건이 하나 있다.",
+        answers: [
+          {
+            key: "A",
+            text: "최저가를 세 군데쯤 비교하고 산다",
+            score: {
+              dataNeed: 0,
+              priceSensitivity: 3,
+              rewardSensitivity: 1,
+              switchingPropensity: 2,
+              awareness: 2,
             },
-            {
-              key: "B",
-              text: "생활비 쿠폰이나 포인트 혜택, 돌려받는 기분이 최고다.",
-              score: {
-                dataNeed: 0,
-                priceSensitivity: 1,
-                rewardSensitivity: 3,
-                switchingPropensity: 1,
-                awareness: 1,
-              },
-              signal: { reward: 2, lifestyleCoupon: 2 },
+            signal: { promoHunter: 3 },
+            tell: "같은 물건도 더 싸게 사는 길을 찾아냅니다",
+          },
+          {
+            key: "B",
+            text: "할인 쿠폰 뜰 때까지 기다린다",
+            score: {
+              dataNeed: 0,
+              priceSensitivity: 2,
+              rewardSensitivity: 2,
+              switchingPropensity: 1,
+              awareness: 2,
             },
-            {
-              key: "C",
-              text: "스트리밍, 웹툰 같은 구독 혜택. 일석이조로 알뜰살뜰 누린다.",
-              score: {
-                dataNeed: 1,
-                priceSensitivity: 1,
-                rewardSensitivity: 3,
-                switchingPropensity: 1,
-                awareness: 1,
-              },
-              signal: { reward: 2, subscription: 2, videoHeavy: 1 },
+            signal: { reward: 3, promoHunter: 1 },
+            tell: "때를 기다려 혜택을 챙깁니다",
+          },
+          {
+            key: "C",
+            text: "마음에 들면 그냥 산다",
+            score: {
+              dataNeed: 1,
+              priceSensitivity: 0,
+              rewardSensitivity: 0,
+              switchingPropensity: 1,
+              awareness: 1,
             },
-            {
-              key: "D",
-              text: "여행, 로밍, 데이터 쿠폰. 해외 갈 때 챙겨주면 그때 진짜 좋다.",
-              score: {
-                dataNeed: 1,
-                priceSensitivity: 1,
-                rewardSensitivity: 3,
-                switchingPropensity: 1,
-                awareness: 1,
-              },
-              signal: { reward: 2, roamingBenefit: 2, stabilityConcern: 1 },
+            signal: { unlimited: 2 },
+            tell: "가격표보다 만족이 우선입니다",
+          },
+          {
+            key: "D",
+            text: "담아둔 것조차 잊어버린다",
+            score: {
+              dataNeed: 0,
+              priceSensitivity: 0,
+              rewardSensitivity: 0,
+              switchingPropensity: -1,
+              awareness: -2,
             },
-          ],
-        },
-        {
-          id: "Q7",
-          visual: "awareness",
-          question: "누가 “너 요금제 이름 뭐야?”라고 물으면?",
-          answers: [
-            {
-              key: "A",
-              text: "이름부터 혜택까지 줄줄 나온다. 이런걸 다 알고 있는 내가 사실 좀 뿌듯하다.",
-              score: {
-                dataNeed: 0,
-                priceSensitivity: 1,
-                rewardSensitivity: 1,
-                switchingPropensity: 1,
-                awareness: 3,
-              },
-              signal: { promoHunter: 1 },
+            signal: { neglect: 3 },
+            tell: "내 것을 얼마나 두고 있었는지 잘 모릅니다",
+          },
+        ],
+      },
+      {
+        id: "Q7",
+        visual: "fridge",
+        question: "지금 냉장고 안쪽에 뭐가 있는지 아세요?",
+        answers: [
+          {
+            key: "A",
+            text: "다 안다. 유통기한까지 꿴다",
+            score: {
+              dataNeed: 0,
+              priceSensitivity: 1,
+              rewardSensitivity: 1,
+              switchingPropensity: 1,
+              awareness: 3,
             },
-            {
-              key: "B",
-              text: "이름은 흐릿한데 용량이랑 요금은 안다. 돈 나가는 건 기억난다.",
-              score: {
-                dataNeed: 0,
-                priceSensitivity: 1,
-                rewardSensitivity: 0,
-                switchingPropensity: 0,
-                awareness: 2,
-              },
-              signal: {},
+            signal: { promoHunter: 1 },
+            tell: "내가 가진 걸 정확히 파악하고 있습니다",
+          },
+          {
+            key: "B",
+            text: "대충 안다. 가끔 놀랄 때가 있다",
+            score: {
+              dataNeed: 0,
+              priceSensitivity: 1,
+              rewardSensitivity: 0,
+              switchingPropensity: 0,
+              awareness: 2,
             },
-            {
-              key: "C",
-              text: "카드 명세서에서 본 금액이 전부다. 더 알고 싶진 않았다.",
-              score: {
-                dataNeed: 0,
-                priceSensitivity: 1,
-                rewardSensitivity: 0,
-                switchingPropensity: 0,
-                awareness: 0,
-              },
-              signal: { neglect: 1 },
+            signal: { balancedData: 1 },
+            tell: "큰 틀은 알지만 세부는 놓치기도 합니다",
+          },
+          {
+            key: "C",
+            text: "열어봐야 안다",
+            score: {
+              dataNeed: 0,
+              priceSensitivity: 0,
+              rewardSensitivity: 0,
+              switchingPropensity: 0,
+              awareness: 0,
             },
-            {
-              key: "D",
-              text: "무슨 통신사인지만 안다. 심지어 찾아보면 내 요금제는 이제 팔지도 않는다.",
-              score: {
-                dataNeed: 0,
-                priceSensitivity: 0,
-                rewardSensitivity: 0,
-                switchingPropensity: -1,
-                awareness: -2,
-              },
-              signal: { neglect: 3 },
+            signal: { neglect: 1 },
+            tell: "굳이 확인하지 않고 지내 왔습니다",
+          },
+          {
+            key: "D",
+            text: "언제 넣었는지 모를 게 뒤에 있다",
+            score: {
+              dataNeed: 0,
+              priceSensitivity: 0,
+              rewardSensitivity: 0,
+              switchingPropensity: -1,
+              awareness: -2,
             },
-          ],
-        },
-        {
-          id: "Q8",
-          visual: "concern",
-          question: "이번엔 요금제 진짜 갈아탈까 하다가 멈칫하는 순간은?",
-          answers: [
-            {
-              key: "A",
-              text: "번호이동, 유심, 개통이라는 단어만 봐도 피곤해진다",
-              score: {
-                dataNeed: 0,
-                priceSensitivity: 0,
-                rewardSensitivity: 0,
-                switchingPropensity: -1,
-                awareness: 0,
-              },
-              signal: { friction: 3, neglect: 1 },
+            signal: { neglect: 3 },
+            tell: "한참 전 그대로 방치된 게 있습니다",
+          },
+        ],
+      },
+      {
+        id: "Q8",
+        visual: "queue",
+        question: "맛집 앞에 40분 줄이 서 있다.",
+        answers: [
+          {
+            key: "A",
+            text: "대기 걸어두고 근처 구경하다 온다",
+            score: {
+              dataNeed: 0,
+              priceSensitivity: 1,
+              rewardSensitivity: 1,
+              switchingPropensity: 2,
+              awareness: 2,
             },
-            {
-              key: "B",
-              text: "싸지만 품질이 떨어져 바로 후회할 것 같아 멈칫한다",
-              score: {
-                dataNeed: 2,
-                priceSensitivity: 0,
-                rewardSensitivity: 0,
-                switchingPropensity: -1,
-                awareness: 1,
-              },
-              signal: { stabilityConcern: 3, unlimited: 1 },
+            signal: { promoHunter: 2 },
+            tell: "번거로움을 요령으로 넘깁니다",
+          },
+          {
+            key: "B",
+            text: "기다린다. 이득이면 그 정도는 버틴다",
+            score: {
+              dataNeed: 0,
+              priceSensitivity: 2,
+              rewardSensitivity: 1,
+              switchingPropensity: 3,
+              awareness: 1,
             },
-            {
-              key: "C",
-              text: "작은 글씨 조건에 당할까 봐 끝까지 의심하게 된다",
-              score: {
-                dataNeed: 0,
-                priceSensitivity: 1,
-                rewardSensitivity: 2,
-                switchingPropensity: 0,
-                awareness: 2,
-              },
-              signal: { reward: 2 },
+            signal: { promoHunter: 2, reward: 1 },
+            tell: "이득이 확실하면 수고를 감수합니다",
+          },
+          {
+            key: "C",
+            text: "줄 서는 것 자체가 피곤하다. 옆집 간다",
+            score: {
+              dataNeed: 1,
+              priceSensitivity: 0,
+              rewardSensitivity: 0,
+              switchingPropensity: -1,
+              awareness: 0,
             },
-            {
-              key: "D",
-              text: "조건 좋으면 간다. 복잡해도 이득이면 버틸 수 있다",
-              score: {
-                dataNeed: 0,
-                priceSensitivity: 1,
-                rewardSensitivity: 1,
-                switchingPropensity: 3,
-                awareness: 1,
-              },
-              signal: { promoHunter: 2 },
+            signal: { friction: 3 },
+            tell: "절차가 길어지면 그 자리에서 마음이 식습니다",
+          },
+          {
+            key: "D",
+            text: "굳이. 그냥 집에서 시켜 먹는다",
+            score: {
+              dataNeed: 1,
+              priceSensitivity: 0,
+              rewardSensitivity: 0,
+              switchingPropensity: -1,
+              awareness: -1,
             },
-          ],
-        },
+            signal: { friction: 2, neglect: 1 },
+            tell: "번거로우면 아예 시작을 안 합니다",
+          },
+        ],
+      },
       ];
 
       const results = {
@@ -2152,30 +2254,21 @@
         });
 
         const normalized = normalizeScores(scores);
-        // 가중치는 6개 유형 분포가 특정 유형에 쏠리지 않도록 시뮬레이션으로 튜닝됨(11~22% 범위).
+        // 계수는 65,536개 답변 조합 전수 시뮬레이션으로 튜닝됨.
+        // 각 유형의 rarity 값(12~22%)과 실제 분포가 일치하도록 맞췄다.
         const resultScores = {
           WIFI_MINIMALIST:
-            (6 - normalized.dataNeed) * 1.35 +
-            normalized.priceSensitivity * 0.7 +
-            (signals.lowData || 0) * 1.7,
+            (6 - normalized.dataNeed) * 1.32 + normalized.priceSensitivity * 0.68 + (signals.lowData || 0) * 1.66,
           SHORT_FORM_HEAVY_USER:
-            normalized.dataNeed * 1.35 + (signals.videoHeavy || 0) * 2.3,
+            normalized.dataNeed * 1.3 + (signals.videoHeavy || 0) * 2.22,
           PLAN_NEGLECTER:
-            (5 - normalized.awareness) * 0.95 +
-            (5 - normalized.switchingPropensity) * 0.6 +
-            (signals.neglect || 0) * 1.7 +
-            (signals.friction || 0) * 0.5,
+            (5 - normalized.awareness) * 0.9 + (5 - normalized.switchingPropensity) * 0.57 + (signals.neglect || 0) * 1.6 + (signals.friction || 0) * 0.47,
           REWARD_OPTIMIZER:
-            normalized.rewardSensitivity * 1.55 + (signals.reward || 0) * 1.5,
+            normalized.rewardSensitivity * 1.76 + (signals.reward || 0) * 1.7,
           UNLIMITED_STABILITY_SEEKER:
-            normalized.dataNeed * 1.2 +
-            (signals.unlimited || 0) * 1.7 +
-            (signals.stabilityConcern || 0) * 1.5,
+            normalized.dataNeed * 1.36 + (signals.unlimited || 0) * 1.93 + (signals.stabilityConcern || 0) * 1.7,
           MVNO_POWER_USER:
-            normalized.priceSensitivity * 0.9 +
-            normalized.switchingPropensity * 1.0 +
-            normalized.awareness * 0.5 +
-            (signals.promoHunter || 0) * 1.6,
+            normalized.priceSensitivity * 0.76 + normalized.switchingPropensity * 0.85 + normalized.awareness * 0.42 + (signals.promoHunter || 0) * 1.36,
         };
 
         const maxScore = Math.max(...Object.values(resultScores));
@@ -2193,11 +2286,11 @@
 
       function normalizeScores(rawScores) {
         const ranges = {
-          dataNeed: [0, 16],
-          priceSensitivity: [0, 13],
-          rewardSensitivity: [0, 16],
-          switchingPropensity: [-4, 12],
-          awareness: [-5, 12],
+          dataNeed: [0, 12],
+          priceSensitivity: [0, 14],
+          rewardSensitivity: [0, 11],
+          switchingPropensity: [-5, 12],
+          awareness: [-7, 16],
         };
 
         return AXES.reduce((scores, axis) => {
@@ -2365,13 +2458,13 @@
                 <rect x="26" y="43" width="20" height="7" rx="3.5" fill="#86d928"></rect>
               </svg>
             </div>
-            <p class="eyebrow">타입 분석 중</p>
-            <h1 class="question-title" id="loading-title">6가지 요금제 타입 중, 당신을 찾는 중…</h1>
+            <p class="eyebrow">분석 중</p>
+            <h1 class="question-title" id="loading-title">방금 그 답들, 요금제로 번역하는 중…</h1>
             <ul class="loading-list">
-              <li>통신비 민감도 확인 중</li>
-              <li>데이터 사용 패턴 확인 중</li>
-              <li>혜택 선호도 확인 중</li>
-              <li>요금제 변경 성향 확인 중</li>
+              <li>뷔페 접시에서 쓰는 양 읽는 중</li>
+              <li>냉장고에서 관리 습관 읽는 중</li>
+              <li>2+1 앞 반응에서 혜택 민감도 읽는 중</li>
+              <li>40분 줄 앞 선택에서 변경 적극성 읽는 중</li>
             </ul>
           </div>
         </section>
@@ -2407,10 +2500,74 @@
       `;
       }
 
+      // 어떤 답이 이 유형 쪽으로 얼마나 기울게 했는지 계산한다.
+      // 같은 문항의 다른 선택지들을 골랐다면 받았을 점수의 평균과 비교하는 반사실(counterfactual) 방식이라,
+      // "이 답을 골랐기 때문에 이쪽으로 왔다"를 그대로 보여줄 수 있다.
+      function topContributions(answers, resultCode, limit = 3) {
+        if (!answers.length) return [];
+
+        const scoreWith = (list) => calculateResult(list).resultScores[resultCode];
+
+        return answers
+          .map((item, index) => {
+            const question = questions.find((q) => q.id === item.questionId);
+            const alternatives = question.answers.map((alt) => {
+              const swapped = answers.slice();
+              swapped[index] = { ...item, answerKey: alt.key };
+              return scoreWith(swapped);
+            });
+            const average =
+              alternatives.reduce((sum, v) => sum + v, 0) / alternatives.length;
+            return { index, item, question, influence: scoreWith(answers) - average };
+          })
+          .filter((entry) => entry.influence > 0)
+          .sort((a, b) => b.influence - a.influence)
+          .slice(0, limit)
+          .map(({ item, question }) => {
+            const answer = question.answers.find((a) => a.key === item.answerKey);
+            return {
+              question: question.question,
+              choice: answer.text,
+              tell: answer.tell,
+            };
+          });
+      }
+
+      function renderReveal(result) {
+        const picks = topContributions(state.answers, result.code);
+        if (!picks.length) return "";
+
+        return `
+          <section class="section reveal" aria-labelledby="reveal-title">
+            <h2 id="reveal-title">엉뚱한 질문이었지만, 이렇게 읽었어요</h2>
+            <ol class="reveal-list">
+              ${picks
+                .map(
+                  (pick) => `
+                <li>
+                  <span class="reveal-q">${pick.question}</span>
+                  <span class="reveal-a">“${pick.choice}”</span>
+                  <span class="reveal-tell">${pick.tell}</span>
+                </li>
+              `,
+                )
+                .join("")}
+            </ol>
+            <p class="reveal-foot">${
+              picks.length === 1
+                ? `이 답이 <b>${result.title}</b> 쪽으로 가장 크게 기울었어요.`
+                : `이 ${["", "한", "두", "세"][picks.length]} 가지가 <b>${result.title}</b> 쪽으로 가장 크게 기울었어요.`
+            }</p>
+          </section>
+        `;
+      }
+
       function renderResultDetail(result, scores) {
         return `
         <div class="result-detail result-body" id="result-detail">
           <p class="description">${result.description}</p>
+
+          ${renderReveal(result)}
 
           ${
             result.sniper?.length
@@ -2497,7 +2654,7 @@
 
       function renderQuestionVisual(question) {
         const imageSrc =
-          QUESTION_IMAGE_SLOTS[question.visual] || QUESTION_IMAGE_SLOTS.data;
+          QUESTION_IMAGE_SLOTS[question.visual] || QUESTION_IMAGE_SLOTS.buffet;
         return `
         <div class="question-visual" aria-hidden="true" data-image-slot="${question.id}">
           <img

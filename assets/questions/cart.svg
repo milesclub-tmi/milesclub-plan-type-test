@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 312 120" role="img" aria-label="장바구니">
+  <defs><linearGradient id="cartbg" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0" stop-color="#f3ffe6"/><stop offset="1" stop-color="#e2f7cb"/>
+  </linearGradient></defs>
+  <rect width="312" height="120" fill="url(#cartbg)"/>
+  <g transform="translate(88 18)">
+    <!-- 손잡이 -->
+    <path d="M40 26 a24 24 0 0 1 48 0" fill="none" stroke="#26382b" stroke-width="6"/>
+    <!-- 바구니 -->
+    <path d="M8 28 h112 l-14 62 h-84 z" fill="#7ed42a" stroke="#26382b" stroke-width="6" stroke-linejoin="round"/>
+    <g stroke="#26382b" stroke-width="5" opacity="0.55">
+      <path d="M38 34 l6 48"/><path d="M64 34 v48"/><path d="M90 34 l-6 48"/>
+    </g>
+    <path d="M8 28 h112 l-14 62 h-84 z" fill="none" stroke="#26382b" stroke-width="6" stroke-linejoin="round"/>
+  </g>
+  <!-- 담긴 물건 -->
+  <circle cx="128" cy="34" r="12" fill="#e8604c" stroke="#26382b" stroke-width="5"/>
+  <rect x="150" y="18" width="26" height="26" rx="6" fill="#ffd23f" stroke="#26382b" stroke-width="5"/>
+  <!-- 가격표 -->
+  <g transform="translate(236 46)">
+    <path d="M0 0 h34 l14 16 -20 22 -28 -18 z" fill="#ffffff" stroke="#26382b" stroke-width="5" stroke-linejoin="round"/>
+    <circle cx="12" cy="12" r="4" fill="#26382b"/>
+  </g>
+</svg>
