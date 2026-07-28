@@ -1,46 +1,46 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" font-family="Pretendard, 'Apple SD Gothic Neo', sans-serif">
- <defs><linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#eaffd4"/><stop offset="1" stop-color="#7fd42a"/></linearGradient></defs>
+ <defs><linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#e8f2ff"/><stop offset="1" stop-color="#4a90f7"/></linearGradient></defs>
  <rect width="1200" height="630" fill="url(#bg)"/>
  <rect x="32" y="32" width="1136" height="566" rx="52" fill="#ffffff"/>
- <rect x="72" y="95" width="400" height="440" rx="52" fill="#f2ffe4" stroke="#dbeecb" stroke-width="3"/>
+ <rect x="72" y="95" width="400" height="440" rx="52" fill="#e8f2ff" stroke="#e5e8eb" stroke-width="3"/>
  <g transform="translate(272.0 315.0) scale(0.9091) translate(-600.0 -439.0)">
  <g transform="translate(400,240) scale(1.667)"><!-- price tags -->
-  <g stroke="#26382b" stroke-width="4" stroke-linejoin="round">
-    <path d="M150 40 L176 40 L192 56 L166 82 L150 66 Z" fill="#dcffbf"/>
+  <g stroke="#1a2b45" stroke-width="4" stroke-linejoin="round">
+    <path d="M150 40 L176 40 L192 56 L166 82 L150 66 Z" fill="#d3e5fd"/>
     <path d="M176 34 L200 34 L214 48 L190 72 L176 58 Z" fill="#ffd23f"/>
   </g>
-  <circle cx="160" cy="50" r="3" fill="#26382b"/>
-  <circle cx="186" cy="44" r="3" fill="#26382b"/>
+  <circle cx="160" cy="50" r="3" fill="#1a2b45"/>
+  <circle cx="186" cy="44" r="3" fill="#1a2b45"/>
   <!-- shadow -->
-  <ellipse cx="118" cy="216" rx="54" ry="10" fill="#26382b" opacity="0.08"/>
+  <ellipse cx="118" cy="216" rx="54" ry="10" fill="#1a2b45" opacity="0.08"/>
   <!-- feet -->
-  <ellipse cx="102" cy="198" rx="11" ry="7" fill="#63b81e" stroke="#26382b" stroke-width="5"/>
-  <ellipse cx="136" cy="198" rx="11" ry="7" fill="#63b81e" stroke="#26382b" stroke-width="5"/>
+  <ellipse cx="102" cy="198" rx="11" ry="7" fill="#1b64da" stroke="#1a2b45" stroke-width="5"/>
+  <ellipse cx="136" cy="198" rx="11" ry="7" fill="#1b64da" stroke="#1a2b45" stroke-width="5"/>
   <!-- body -->
-  <ellipse cx="118" cy="136" rx="56" ry="58" fill="#7ed42a" stroke="#26382b" stroke-width="6"/>
-  <ellipse cx="118" cy="150" rx="38" ry="38" fill="#a6ee5c"/>
+  <ellipse cx="118" cy="136" rx="56" ry="58" fill="#4a90f7" stroke="#1a2b45" stroke-width="6"/>
+  <ellipse cx="118" cy="150" rx="38" ry="38" fill="#a9c9fb"/>
   <!-- cheeks -->
   <ellipse cx="90" cy="146" rx="8" ry="5.5" fill="#ffb3a7"/>
   <!-- raised eyebrow (clever) -->
-  <path d="M92 116 Q100 110 108 114" fill="none" stroke="#26382b" stroke-width="5" stroke-linecap="round"/>
+  <path d="M92 116 Q100 110 108 114" fill="none" stroke="#1a2b45" stroke-width="5" stroke-linecap="round"/>
   <!-- left normal eye -->
-  <circle cx="100" cy="128" r="6" fill="#26382b"/>
+  <circle cx="100" cy="128" r="6" fill="#1a2b45"/>
   <!-- smirk -->
-  <path d="M104 152 Q114 160 126 154" fill="none" stroke="#26382b" stroke-width="5" stroke-linecap="round"/>
+  <path d="M104 152 Q114 160 126 154" fill="none" stroke="#1a2b45" stroke-width="5" stroke-linecap="round"/>
   <!-- arm holding magnifier -->
-  <path d="M150 150 Q160 140 150 126" fill="none" stroke="#26382b" stroke-width="6" stroke-linecap="round"/>
+  <path d="M150 150 Q160 140 150 126" fill="none" stroke="#1a2b45" stroke-width="6" stroke-linecap="round"/>
   <!-- magnifying glass over right eye -->
-  <line x1="150" y1="150" x2="162" y2="166" stroke="#26382b" stroke-width="7" stroke-linecap="round"/>
-  <circle cx="140" cy="128" r="20" fill="#eaf7ff" fill-opacity="0.65" stroke="#26382b" stroke-width="6"/>
+  <line x1="150" y1="150" x2="162" y2="166" stroke="#1a2b45" stroke-width="7" stroke-linecap="round"/>
+  <circle cx="140" cy="128" r="20" fill="#eaf7ff" fill-opacity="0.65" stroke="#1a2b45" stroke-width="6"/>
   <!-- enlarged eye through lens -->
-  <circle cx="140" cy="128" r="8" fill="#26382b"/>
+  <circle cx="140" cy="128" r="8" fill="#1a2b45"/>
   <circle cx="143" cy="124" r="2.6" fill="#ffffff"/></g>
  </g>
- <text x="512" y="128" font-size="27" font-weight="700" fill="#3f8f00">마일스클럽 · 요금제 타입 테스트</text>
- <rect x="512" y="152" width="315" height="54" rx="27" fill="#26382b"/>
- <text x="536" y="188" font-size="28" font-weight="800" fill="#c9ff8f">참여자 18%가 이 타입</text>
- <text x="512" y="310" font-size="72" font-weight="800" fill="#243024">알뜰폰 빠꼼이형</text>
- <rect x="512" y="356" width="616" height="79" rx="26" fill="#f2ffe4"/>
- <text x="540" y="405" font-size="27" font-weight="700" fill="#3f8f00">프로모션 끝나는 날짜까지 기억하는 타입</text>
- <text x="512" y="566" font-size="25" font-weight="700" fill="#5b6b52">내 요금제는 무슨 타입? · 30초 테스트</text>
+ <text x="512" y="128" font-size="27" font-weight="700" fill="#1b64da">마일스클럽 · 요금제 타입 테스트</text>
+ <rect x="512" y="152" width="379" height="54" rx="27" fill="#1a2b45"/>
+ <text x="536" y="188" font-size="28" font-weight="800" fill="#d3e5fd">국내 이용자 17%가 이 유형</text>
+ <text x="512" y="310" font-size="72" font-weight="800" fill="#191f28">알뜰폰 빠꼼이</text>
+ <rect x="512" y="356" width="616" height="79" rx="26" fill="#e8f2ff"/>
+ <text x="540" y="405" font-size="27" font-weight="700" fill="#1b64da">프로모션 끝나는 날짜까지 기억하는 타입</text>
+ <text x="512" y="566" font-size="25" font-weight="700" fill="#6b7684">내 요금제는 무슨 타입? · 30초 테스트</text>
 </svg>
