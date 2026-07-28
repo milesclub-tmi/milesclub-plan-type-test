@@ -1690,7 +1690,50 @@
             url: "https://milesclub.co.kr/plans/detail/a82f9901-e5a8-4304-8a6b-6a6fd20f8a01",
           },
         ],
-        WIFI_MINIMALIST: [],
+        WIFI_MINIMALIST: [
+          {
+            name: "L.POINT 라이트",
+            network: "KT망",
+            price: 16000,
+            promo: 1100,
+            promoMonths: 7,
+            dataGb: 10,
+            dailyGb: null,
+            throttle: null,
+            voice: false,
+            contract: 0,
+            benefit: "매월 500P 적립 + 남은 데이터 엘포인트 환급",
+            url: "https://milesclub.co.kr/plans/detail/0ea40b3e-ba26-4048-a9d4-0211def65cda",
+          },
+          {
+            name: "밀크 10",
+            network: "KT망",
+            price: 16000,
+            promo: null,
+            promoMonths: null,
+            dataGb: 10,
+            dailyGb: null,
+            throttle: null,
+            voice: false,
+            contract: 0,
+            benefit: "남은 데이터를 밀크코인으로 환급",
+            url: "https://milesclub.co.kr/plans/detail/56e49d25-c519-4e8f-81f1-ea411f75bb47",
+          },
+          {
+            name: "다이소3000 7GB+",
+            network: "KT망",
+            price: 24200,
+            promo: 9000,
+            promoMonths: 7,
+            dataGb: 7,
+            dailyGb: null,
+            throttle: 1,
+            voice: true,
+            contract: 0,
+            benefit: "평생 매월 다이소 3,000원 상품권",
+            url: "https://milesclub.co.kr/plans/detail/8bbacc4d-d9ff-43e5-ab1f-ee00ad787034",
+          },
+        ],
       };
 
       const RESULT_PRIORITY = [
@@ -2345,6 +2388,9 @@
       let toastTimer;
       let landingTracked = false;
       let resultViewedTracked = false;
+      // render()가 이 아래에서 바로 호출되므로, 프리로드 플래그도 여기서 초기화해야 한다.
+      // 함수 근처에 두면 아직 초기화 전이라 접근 시 ReferenceError가 난다.
+      let questionImagesPreloaded = false;
       let state = createInitialState();
 
       app.addEventListener("click", (event) => {
@@ -2579,6 +2625,7 @@
       function render() {
         if (state.view === "landing") {
           app.innerHTML = renderWithBrand(renderLanding());
+          preloadQuestionImages();
           if (!landingTracked) {
             landingTracked = true;
             trackEvent("test_landing_viewed", { runId: state.runId });
@@ -2804,6 +2851,18 @@
           .sort((a, b) => b.rank - a.rank)
           .slice(0, limit)
           .map((trait) => trait.text);
+      }
+
+      // 문항 이미지는 그 문항이 렌더될 때 처음 받아오기 때문에, 네트워크 환경에서는
+      // 문항을 넘길 때마다 일러스트가 한 박자 늦게 뜬다. 랜딩에서 미리 받아둔다(8개 합쳐 약 12KB).
+      function preloadQuestionImages() {
+        if (questionImagesPreloaded) return;
+        questionImagesPreloaded = true;
+        Object.values(QUESTION_IMAGE_SLOTS).forEach((src) => {
+          const image = new Image();
+          image.decoding = "async";
+          image.src = src;
+        });
       }
 
       function formatWon(value) {
