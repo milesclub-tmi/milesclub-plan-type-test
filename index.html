@@ -2918,35 +2918,13 @@
                 )
                 .join("")}
             </div>
-            <p class="plan-note">
-              ${PLAN_DATA_AS_OF.replace(/-/g, ".")} 기준 · 부가세 포함 금액입니다.
-              음성·문자 제공량은 요금제마다 다르니 상세 페이지에서 확인해 주세요.
-            </p>
           </section>
         `;
       }
-
-      function renderTraitSummary() {
-        if (!state.answers.length) return "";
-        const traits = buildTraits(state.scores, state.signals);
-        if (!traits.length) return "";
-
-        return `
-          <section class="section" aria-labelledby="trait-title">
-            <h2 id="trait-title">당신은 이런 성향일 것 같았어요</h2>
-            <ul class="trait-list">
-              ${traits.map((text) => `<li>${text}</li>`).join("")}
-            </ul>
-          </section>
-        `;
-      }
-
       function renderResultDetail(result, scores) {
         return `
         <div class="result-detail result-body" id="result-detail">
           <p class="description">${result.description}</p>
-
-          ${renderTraitSummary()}
 
           ${
             result.sniper?.length
