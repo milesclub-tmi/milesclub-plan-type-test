@@ -155,9 +155,27 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        min-height: 22px;
+        min-height: 20px;
+      }
+
+      /* 로고는 마일스클럽 홈으로 가는 링크. 평소엔 옅게 두되 누를 수 있어야 한다. */
+      .brand-footer a {
+        display: block;
+        padding: 2px 8px;
+        border-radius: 8px;
         opacity: 0.42;
-        pointer-events: none;
+        transition: opacity 150ms ease;
+      }
+
+      .brand-footer a:focus-visible {
+        outline: 3px solid rgba(49, 130, 246, 0.38);
+        outline-offset: 2px;
+      }
+
+      @media (hover: hover) and (pointer: fine) {
+        .brand-footer a:hover {
+          opacity: 0.75;
+        }
       }
 
       .brand-footer img {
@@ -207,7 +225,7 @@
       .landing-image {
         display: block;
         width: 100%;
-        aspect-ratio: 1280 / 500;
+        border-bottom: 1px solid #d3e5fd;
         object-fit: cover;
         object-position: center top;
       }
@@ -361,13 +379,15 @@
         stroke-linejoin: round;
       }
 
-      .primary-btn:hover,
-      .secondary-btn:hover,
-      .ghost-btn:hover,
-      .text-btn:hover,
-      .choice-btn:hover,
-      .home-btn:hover {
-        transform: translateY(-1px);
+      @media (hover: hover) and (pointer: fine) {
+        .primary-btn:hover,
+        .secondary-btn:hover,
+        .ghost-btn:hover,
+        .text-btn:hover,
+        .choice-btn:hover,
+        .home-btn:hover {
+          transform: translateY(-1px);
+        }
       }
 
       .primary-btn:active,
@@ -391,10 +411,15 @@
       }
 
       .question-layout {
-        min-height: 640px;
         display: grid;
-        gap: 16px;
-        align-content: start;
+        /* 진행바 · 이미지 · 질문 · 선택지. 이미지 행만 1fr이라 남는 높이를 전부 흡수한다.
+           화면이 크면 이미지가 커지고, 작아도 스크롤 없이 한 화면에 들어간다. */
+        grid-template-rows: auto minmax(0, 1fr) auto auto;
+        gap: clamp(10px, 1.6vh, 16px);
+        align-content: stretch;
+        padding: 16px;
+        max-height: calc(100vh - 64px);
+        max-height: calc(100dvh - 64px);
         /* 진행바 sticky가 카드에 갇히지 않도록 세로는 visible.
          가로는 card-enter(translateX)가 삐져나오지 않게 clip — hidden과 달리
          clip은 스크롤 컨테이너를 만들지 않아 sticky가 그대로 동작합니다. */
@@ -467,6 +492,7 @@
         position: relative;
         width: 100%;
         min-height: 146px;
+        height: 100%;
         display: grid;
         place-items: center;
         overflow: hidden;
@@ -477,6 +503,10 @@
           linear-gradient(315deg, rgba(74, 144, 247, 0.18), transparent 48%),
           #f9fafb;
         box-shadow: inset 0 -6px 0 rgba(49, 130, 246, 0.08);
+      }
+
+      .question-visual {
+        min-height: 96px;
       }
 
       .question-visual::before,
@@ -531,8 +561,8 @@
 
       .choice-btn {
         width: 100%;
-        min-height: 50px;
-        padding: 12px;
+        min-height: 46px;
+        padding: 10px 12px;
         display: grid;
         grid-template-columns: 34px 1fr;
         gap: 12px;
@@ -544,10 +574,19 @@
         box-shadow: 0 1px 3px rgba(25, 31, 40, 0.07);
       }
 
-      .choice-btn:hover,
+      /* 이전 문항으로 돌아왔을 때 '내가 고른 답'을 표시하는 상태. hover와 분리해 둔다. */
       .choice-btn[aria-pressed="true"] {
         border-color: var(--brand);
         background: var(--surface-soft);
+      }
+
+      /* 터치 기기는 탭한 뒤에도 :hover가 남아, 다음 문항의 같은 자리 버튼이
+         선택된 것처럼 보였다. 마우스가 있는 환경에서만 hover를 적용한다. */
+      @media (hover: hover) and (pointer: fine) {
+        .choice-btn:hover {
+          border-color: var(--brand);
+          background: var(--surface-soft);
+        }
       }
 
       .choice-key {
@@ -1296,7 +1335,8 @@
         left: 50%;
         bottom: 22px;
         z-index: 10;
-        width: min(calc(100% - 36px), 420px);
+        /* 100%는 fixed 요소에서 뷰포트보다 넓게 잡혀 가로·세로 오버플로를 만들었다. */
+        width: min(calc(100vw - 36px), 420px);
         padding: 14px 16px;
         border-radius: var(--radius);
         background: #191f28;
@@ -1349,14 +1389,10 @@
           font-size: 36px;
         }
 
-        .quㄴestion-title {
-          font-size: 24px;
-        }
 
-        .question-visual,
-        .question-image {
-          min-height: 240px;
-          height: 240px;
+        .question-layout {
+          max-height: calc(100vh - 56px);
+          max-height: calc(100dvh - 56px);
         }
 
         .result-title {
@@ -1373,6 +1409,28 @@
           height: 30px;
         }
       }
+
+      /* 세로가 짧은 화면에서는 주변 여백을 조여 대표 이미지에 높이를 몰아준다.
+         이미지가 너무 납작해지면 캐릭터가 잘려 무엇인지 알아볼 수 없다. */
+      @media (max-height: 700px) {
+        .question-layout {
+          padding: 14px;
+        }
+
+        .progress-sticky {
+          padding-top: 14px;
+          padding-bottom: 10px;
+        }
+
+        .choice-btn {
+          min-height: 42px;
+          padding: 8px 12px;
+        }
+
+        .question-visual {
+          min-height: 120px;
+        }
+      }
     </style>
   </head>
   <body>
@@ -1382,7 +1440,8 @@
     <script type="module">
       const CONTENT_VERSION = "milesclub-plan-type-2026-07-v4";
       const ANALYTICS_ENDPOINT = "";
-      const PLAN_DETAIL_URL = "https://milesclub.co.kr/plans";
+      const PLAN_DETAIL_URL = "https://milesclub.co.kr";
+      const MILESCLUB_HOME_URL = "https://milesclub.co.kr";
       // 실제 참여자 집계 연동 전 임시 표기값. 0으로 두면 랜딩에 노출되지 않습니다.
       const SOCIAL_PROOF_COUNT = 0;
       const AXES = [
@@ -2159,7 +2218,7 @@
           },
           cta: "내 사용량에 맞는 요금제 보기",
           shareText:
-            "나는 ‘와이파이 은둔자’ 나왔어요.\n밖에서는 데이터 아끼고 집에서는 와이파이에 맡기는 타입.",
+            "[내 핸드폰 요금제 성향은?]\n나는 ‘와이파이 은둔자’ 나왔어요.\n밖에서는 데이터 아끼고 집에서는 와이파이에 맡기는 타입.\n나는 무슨 타입일까? 바로 확인해보세요!",
           rarity: 14,
           sniper: [
             "집이나 회사 오면 일단 와이파이부터 연결한다",
@@ -2191,7 +2250,7 @@
           },
           cta: "데이터 넉넉한 요금제 보기",
           shareText:
-            "나는 ‘숏폼 탕진러’ 나왔어요.\n릴스 잠깐 본 것 같은데 데이터가 이미 바닥난 타입.",
+            "[내 핸드폰 요금제 성향은?]\n나는 ‘숏폼 탕진러’ 나왔어요.\n릴스 잠깐 본 것 같은데 데이터가 이미 바닥난 타입.\n나는 무슨 타입일까? 바로 확인해보세요!",
           rarity: 15,
           sniper: [
             "‘딱 하나만’ 보려다 정신 차리면 한시간 지나 있다",
@@ -2223,7 +2282,7 @@
           },
           cta: "내 요금제 다시 진단하기",
           shareText:
-            "나는 ‘요금제 고고학자’ 나왔어요.\n폰 샀을때 가입했던 그 요금제 아직도 쓰는 중",
+            "[내 핸드폰 요금제 성향은?]\n나는 ‘요금제 고고학자’ 나왔어요.\n폰 샀을때 가입했던 그 요금제 아직도 쓰는 중\n나는 무슨 타입일까? 바로 확인해보세요!",
           rarity: 23,
           sniper: [
             "지금 요금제에 언제 가입했는지 기억나지 않는다",
@@ -2255,7 +2314,7 @@
           },
           cta: "다양한 리워드 받는 요금제 보기",
           shareText:
-            "나는 ‘혜택 컬렉터형’ 나왔어요.\n통신비도 그냥 내면 손해라고 생각하는 타입.",
+            "[내 핸드폰 요금제 성향은?]\n나는 ‘혜택 컬렉터형’ 나왔어요.\n통신비도 그냥 내면 손해라고 생각하는 타입.\n나는 무슨 타입일까? 바로 확인해보세요!",
           rarity: 8,
           sniper: [
             "결제 전에 포인트·쿠폰부터 반사적으로 확인한다",
@@ -2287,7 +2346,7 @@
           },
           cta: "안심하고 쓸 수 있는 요금제 보기",
           shareText:
-            "나는 ‘데이터 야수’ 나왔어요.\n남은 데이터 확인하는 삶은 거부하는 타입.",
+            "[내 핸드폰 요금제 성향은?]\n나는 ‘데이터 야수’ 나왔어요.\n남은 데이터 확인하는 삶은 거부하는 타입.\n나는 무슨 타입일까? 바로 확인해보세요!",
           rarity: 22,
           sniper: [
             "데이터 잔량을 확인하며 사는 삶은 거부한다",
@@ -2319,7 +2378,7 @@
           },
           cta: "지금 할인 중인 요금제 보기",
           shareText:
-            "나는 ‘알뜰폰 빠꼼이’ 나왔어요.\n프로모션 끝나는 날짜까지 기억하는 타입.",
+            "[내 핸드폰 요금제 성향은?]\n나는 ‘알뜰폰 빠꼼이’ 나왔어요.\n프로모션 끝나는 날짜까지 기억하는 타입.\n나는 무슨 타입일까? 바로 확인해보세요!",
           rarity: 17,
           sniper: [
             "프로모션이 끝나는 날짜를 정확히 기억한다",
@@ -2617,8 +2676,10 @@
 
       function renderBrandFooter() {
         return `
-        <div class="brand-footer" aria-hidden="true">
-          <img src="./assets/brand/milesclub-logotype.svg" alt="">
+        <div class="brand-footer">
+          <a href="${MILESCLUB_HOME_URL}" target="_blank" rel="noopener" aria-label="마일스클럽 홈으로 이동">
+            <img src="./assets/brand/milesclub-logotype.svg" alt="마일스클럽">
+          </a>
         </div>
       `;
       }
