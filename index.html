@@ -1212,11 +1212,6 @@
         font-weight: 800;
       }
 
-      .quiz-teaser {
-        color: var(--brand-dark);
-        font-size: 13px;
-        font-weight: 800;
-      }
 
       .result-body {
         display: grid;
@@ -2693,16 +2688,6 @@
         return `<p class="social-proof">🔥 지금까지 ${rounded}명이 자기 타입을 확인했어요</p>`;
       }
 
-      function renderQuizTeaser(step) {
-        if (step < questions.length - 2) return "";
-        const remaining = questions.length - step;
-        const message =
-          remaining <= 1
-            ? "마지막 질문이에요! 타입이 거의 다 잡혔어요"
-            : "거의 다 왔어요 · 벌써 당신의 타입이 보이기 시작해요";
-        return `<p class="quiz-teaser">${message}</p>`;
-      }
-
       function rarityLabel(rarity) {
         if (!rarity) return "";
         // 이 수치는 우리 참여자 집계가 아니라 국내 통신 통계에서 추산한 값이다.
@@ -2765,7 +2750,6 @@
               </svg>
             </button>
           </div>
-          ${renderQuizTeaser(step)}
           ${renderQuestionVisual(question)}
           <h1 class="question-title" id="question-title">${question.question}</h1>
           <div class="choice-list">
